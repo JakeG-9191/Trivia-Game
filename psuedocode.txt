@@ -1,0 +1,17 @@
+Object of game is to have player correctly guess answer to several questions within a set amount of time 
+
+10 questions need to be asked during game, questions will have four different choices, 3 of those choices will be wrong, the remaining choice will be right. 
+
+Right and wrong answers will add to respective totals and will be printed out at the end of the game, where user will have option to play the game again
+
+    there should also be a catagory with a value added that includes the amount of questions that were not answered
+
+Must be a countdown timer associated with game, and when time runs out *or* when player answers all questions, game function must end and results must be displayed
+
+In JavaScript
+    user guess must be captured and checked for right or wrong affiliation 
+    new page must be displayed or current page overwritten for score page
+    must have button submission when all questions have been answered
+    must have button submission to replay the game if desired by player
+    timer must be implemented that counts down as soon as game begins, this must also wire into html rewrite / new page when time is out
+    
