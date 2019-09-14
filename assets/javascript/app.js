@@ -5,57 +5,26 @@ setTimeout(lost, 150000);
 
 
 var questions = {
-    Q1: {
-        inqury: "how many fives is right?",
-        answer: ["1", "2", "3", "5"],
-    },
-    Q2: {
-        inqury: "how would you know?",
-        answer: ["yes", "no", "i dont", "5"],
-    },
-    Q3: {
-        inqury: "how would you know?",
-        answer: ["yes", "no", "i dont", "5"],
-    },
-    Q4: {
-        inqury: "how would you know?",
-        answer: ["yes", "no", "i dont", "5"],
-    },
-    Q5: {
-        inqury: "how would you know?",
-        answer: ["yes", "no", "i dont", "5"],
-    },
-    Q6: {
-        inqury: "how would you know?",
-        answer: ["yes", "no", "i dont", "5"],
-    },
-    Q7: {
-        inqury: "how would you know?",
-        answer: ["yes", "no", "i dont", "5"],
-    },
-    Q8: {
-        inqury: "how would you know?",
-        answer: ["yes", "no", "i dont", "5"],
-    },
-    Q9: {
-        inqury: "how would you know?",
-        answer: ["yes", "no", "i dont", "5"],
-    },
-    Q10: {
-        inqury: "how would you know?",
-        answer: ["yes", "no", "i dont", "5"],
-    },
+    Q: ["here is the question", "1", "2", "3", "4"],
+    Q: ["a second question", "5", "6", "7", "8"]
 };
 
-console.log(questions.Q1.inqury);
-console.log(questions.Q1.answer[3]);
-console.log(questions.Q2.inqury);
-console.log(questions.Q2.answer[2]);
+console.log(questions.Q);
+console.log(questions.Q.length);
+
+for (var i = 0; i < questions.Q.length; i++) {
+    $(".question").append(questions.Q[0]);
+    $("#option1").append(questions.Q[1]);
+    $("#option2").append(questions.Q[2]);
+    $("#option3").append(questions.Q[3]);
+    $("#option4").append(questions.Q[4]);
+}
 
 // create a page onload for questions as soon as page loads
 window.onload = function () {
-    $(".question").append(questions.Q1.inqury)
+
 }
+
 // create reset function if player wants to play again
 function playAgain() {
     time = 150;
@@ -64,7 +33,8 @@ function playAgain() {
 }
 
 function lost() {
-    alert("you've run out of time")
+    alert("you've run out of time");
+    time = 150;
 }
 // create start function that begins countdown timer
 
@@ -100,7 +70,6 @@ function count() {
     time--;
     var currentTime = timeConverter(time);
     $(".display").text(currentTime);
-    console.log(currentTime)
 }
 
 count();
