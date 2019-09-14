@@ -4,21 +4,21 @@ var time = 150;
 setTimeout(lost, 150000);
 
 
-var questions = {
-    Q: ["here is the question", "1", "2", "3", "4"],
-    Q: ["a second question", "5", "6", "7", "8"]
-};
+// var questions = {
+//     Q: ["here is the question", "1", "2", "3", "4"],
+//     Q: ["a second question", "5", "6", "7", "8"],
+//     Q: ["a third question", "A", "B", "C", "D"]
+// };
 
-console.log(questions.Q);
-console.log(questions.Q.length);
+var trivia1 = {question:"how would you go about this?", answer1:"this first", answer2:"this second", answer3:"this third", answer4:"this fourth and last"}
 
-for (var i = 0; i < questions.Q.length; i++) {
-    $(".question").append(questions.Q[0]);
-    $("#option1").append(questions.Q[1]);
-    $("#option2").append(questions.Q[2]);
-    $("#option3").append(questions.Q[3]);
-    $("#option4").append(questions.Q[4]);
+console.log(trivia1)
+console.log(trivia1.question)
+
+for (var i = 1; i < 5; i++) {
+    
 }
+
 
 // create a page onload for questions as soon as page loads
 window.onload = function () {
