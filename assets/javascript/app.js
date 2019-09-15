@@ -10,20 +10,47 @@ setTimeout(lost, 150000);
 //     Q: ["a third question", "A", "B", "C", "D"]
 // };
 
-var trivia1 = {question:"how would you go about this?", answer1:"this first", answer2:"this second", answer3:"this third", answer4:"this fourth and last"}
-
-console.log(trivia1)
-console.log(trivia1.question)
-
-for (var i = 1; i < 5; i++) {
-    
+var questionPool = {
+    Q1: {
+        question: "how is this possible?",
+        wrongAnswers: ["it is not", "it is", "why not"],
+        rightAnswer: "its in the eyes",
+    },
+    Q2: {
+        question: "this is a test?",
+        wrongAnswers: ["1", "2", "3"],
+        rightAnswer: "4",
+    },
 }
 
 
 // create a page onload for questions as soon as page loads
 window.onload = function () {
-
+alert("You are about to embark on a most magical trivia experience!");
 }
+
+
+
+function gameOn() {
+i = 5
+
+    $(".question").append(i["#id[i]"])
+
+
+
+    // $(".question").text("Question 1: " + questionPool.Q1.question);
+    // $("#option1").text(questionPool.Q1.wrongAnswers[0]);
+    // $("#option2").text(questionPool.Q1.wrongAnswers[1]);
+    // $("#option3").text(questionPool.Q1.wrongAnswers[2]);
+    // $("#option4").text(questionPool.Q1.rightAnswer);
+
+    // $(".question2").text("Question 2: " + questionPool.Q2.question);
+    // $("#option1").text(questionPool.Q2.wrongAnswers[0]);
+    // $("#option2").text(questionPool.Q2.wrongAnswers[1]);
+    // $("#option3").text(questionPool.Q2.wrongAnswers[2]);
+    // $("#option4").text(questionPool.Q2.rightAnswer);
+}
+
 
 // create reset function if player wants to play again
 function playAgain() {
@@ -74,4 +101,5 @@ function count() {
 
 count();
 begin();
+gameOn();
 
