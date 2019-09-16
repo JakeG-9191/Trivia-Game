@@ -11,32 +11,47 @@ var questionPool = [
     {
         question: "how is this possible?",
         options: ["it is not", "it is", "why not", "because"],
-        rightAnswer: 1,
+        rightAnswer: "three",
     },
 
     {
         question: "this is a test?",
-        options: ["1", "2", "3", "4"],
+        options: ["one", "two", "three", "four"],
         rightAnswer: 2,
     },
 ]
 
-console.log(questionPool[0].question)
-console.log(questionPool.length)
+console.log(questionPool[1].options)
+console.log(questionPool[1].options[2])
+console.log(questionPool[1].rightAnswer)
 // create a page onload for questions as soon as page loads
-window.onload = function () {
-alert("You are about to embark on a most magical trivia experience!");
-}
+// window.onload = function () {
 
+// }
 
+$("#begin").on("click", function () {
+    begin();
+    gameOn();
+    count();
+})
 
 function gameOn() {
     for (var i = 0; i < questionPool.length; i++) {
-        
-    $("<p>").add("<span>" + questionPool[i].question + "</span>").prependTo($(".question"));
+        var questionAsked = $("<p>").text(questionPool[i].question);
+        var optionProvided = $("<p>").text(questionPool[i].options);
 
-    $(".options").add("<span>" + questionPool[i].options + "</span>").appendTo($("<div class='question'></div>"));
+        console.log(optionProvided[i]);
+
+        var qAndA = $("<div>");
+        qAndA.append(questionAsked);
+        qAndA.append(optionProvided);
+        $(".question").prepend(qAndA)
+
+    }
 }
+
+function answers() {
+
 }
 
 // create reset function if player wants to play again
@@ -54,7 +69,6 @@ function lost() {
 
 function begin() {
     intervalId = setInterval(count, 1000);
-
 }
 
 // create time conversion function to break into minutes and seconds
@@ -86,7 +100,7 @@ function count() {
     $(".display").text(currentTime);
 }
 
-count();
-begin();
-gameOn();
+// count();
+// begin();
+// gameOn();
 
