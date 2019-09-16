@@ -1,29 +1,28 @@
 // Global Vars
 var intervalId;
 var time = 150;
+var correct = 0;
+var incorrect = 0;
+var unanswered = 0;
 setTimeout(lost, 150000);
 
 
-// var questions = {
-//     Q: ["here is the question", "1", "2", "3", "4"],
-//     Q: ["a second question", "5", "6", "7", "8"],
-//     Q: ["a third question", "A", "B", "C", "D"]
-// };
-
-var questionPool = {
-    Q1: {
+var questionPool = [
+    {
         question: "how is this possible?",
-        wrongAnswers: ["it is not", "it is", "why not"],
-        rightAnswer: "its in the eyes",
+        options: ["it is not", "it is", "why not", "because"],
+        rightAnswer: 1,
     },
-    Q2: {
+
+    {
         question: "this is a test?",
-        wrongAnswers: ["1", "2", "3"],
-        rightAnswer: "4",
+        options: ["1", "2", "3", "4"],
+        rightAnswer: 2,
     },
-}
+]
 
-
+console.log(questionPool[0].question)
+console.log(questionPool.length)
 // create a page onload for questions as soon as page loads
 window.onload = function () {
 alert("You are about to embark on a most magical trivia experience!");
@@ -32,25 +31,13 @@ alert("You are about to embark on a most magical trivia experience!");
 
 
 function gameOn() {
-i = 5
+    for (var i = 0; i < questionPool.length; i++) {
+        
+    $("<p>").add("<span>" + questionPool[i].question + "</span>").prependTo($(".question"));
 
-    $(".question").append(i["#id[i]"])
-
-
-
-    // $(".question").text("Question 1: " + questionPool.Q1.question);
-    // $("#option1").text(questionPool.Q1.wrongAnswers[0]);
-    // $("#option2").text(questionPool.Q1.wrongAnswers[1]);
-    // $("#option3").text(questionPool.Q1.wrongAnswers[2]);
-    // $("#option4").text(questionPool.Q1.rightAnswer);
-
-    // $(".question2").text("Question 2: " + questionPool.Q2.question);
-    // $("#option1").text(questionPool.Q2.wrongAnswers[0]);
-    // $("#option2").text(questionPool.Q2.wrongAnswers[1]);
-    // $("#option3").text(questionPool.Q2.wrongAnswers[2]);
-    // $("#option4").text(questionPool.Q2.rightAnswer);
+    $(".options").add("<span>" + questionPool[i].options + "</span>").appendTo($("<div class='question'></div>"));
 }
-
+}
 
 // create reset function if player wants to play again
 function playAgain() {
