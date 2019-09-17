@@ -4,54 +4,56 @@ var time = 150;
 var correct = 0;
 var incorrect = 0;
 var unanswered = 0;
-setTimeout(lost, 150000);
+var clock = false;
 
-
+console.log(clock)
 var questionPool = [
     {
         question: "how is this possible?",
         options: ["it is not", "it is", "why not", "because"],
-        rightAnswer: "three",
+        rightAnswer: "it is not",
     },
 
     {
         question: "this is a test?",
         options: ["one", "two", "three", "four"],
-        rightAnswer: 2,
+        rightAnswer: "two",
     },
 ]
-
-console.log(questionPool[1].options)
-console.log(questionPool[1].options[2])
-console.log(questionPool[1].rightAnswer)
-// create a page onload for questions as soon as page loads
-// window.onload = function () {
-
-// }
 
 $("#begin").on("click", function () {
     begin();
     gameOn();
     count();
+    setTimeout(lost, 150000);
+    answers();
+    console.log(clock)
 })
 
 function gameOn() {
+
     for (var i = 0; i < questionPool.length; i++) {
-        var questionAsked = $("<p>").text(questionPool[i].question);
-        var optionProvided = $("<p>").text(questionPool[i].options);
+        questionAsked = (questionPool[i].question);
+        optionsProvided = (questionPool[i].options);
 
-        console.log(optionProvided[i]);
-
-        var qAndA = $("<div>");
-        qAndA.append(questionAsked);
-        qAndA.append(optionProvided);
-        $(".question").prepend(qAndA)
+        $(".question").append("<h3>" + questionAsked + "</h3>" + "<p>" + optionsArray(optionsProvided) + "</p>");
 
     }
 }
 
-function answers() {
+function optionsArray(optionsProvided) {
+    var choices = "";
+    for (var i = 0; i < optionsProvided.length; i++) {
+        choices += `<p class="choice" data-value="${optionsProvided[i]}">${optionsProvided[i]}</p>`
+    }
+    return choices;
+}
 
+function answers() {
+    $(document).on("click", ".choice", function () {
+        var selectedOption = $(this).attr("data-value");
+        console.log(selectedOption)
+    });
 }
 
 // create reset function if player wants to play again
@@ -64,10 +66,12 @@ function playAgain() {
 function lost() {
     alert("you've run out of time");
     time = 150;
+    clock = false;
 }
 // create start function that begins countdown timer
 
 function begin() {
+    clock = true;
     intervalId = setInterval(count, 1000);
 }
 
@@ -99,8 +103,4 @@ function count() {
     var currentTime = timeConverter(time);
     $(".display").text(currentTime);
 }
-
-// count();
-// begin();
-// gameOn();
 
