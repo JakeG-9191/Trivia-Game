@@ -82,11 +82,12 @@ function gameOn() {
     };
 }
 
-$(".choice").on('change', function () {
-    $(".choice").not(this).prop('checked', false);
-});
 $(document).on("click", ".choice", function () {
     selectedOption = $(this).attr("data-value");
+    
+    $(".choice").on("change", function () {
+        $(".choice").not(this).prop("checked", false);
+    });
 
     $("p").hover(function () {
         $(this).css("background-color", "red");
@@ -100,7 +101,6 @@ $(document).on("click", ".choice", function () {
     if (correct + incorrect == 10) {
         gameStatus();
     }
-
     if (clock = true && questionPool[0].rightAnswer === selectedOption) {
         correct++;
     } else if (questionPool[1].rightAnswer === selectedOption) {
@@ -137,19 +137,20 @@ function optionsArray(optionsProvided) {
 function gameStatus() {
     $(".question").html("<h3>" + "Correct Answers: " + correct + "</h3>" + "<h3>" + "\nIncorrect Answers: " + incorrect + "</h3>");
     alert("You've answered all the questions before time was up!")
-    startGame();
+    $(".display").text("");
 }
 
 function lost() {
     $(".question").html("<h3>" + "Correct Answers: " + correct + "</h3>" + "<h3>" + "\nIncorrect Answers: " + incorrect + "</h3>");
     alert("You've run out of time");
-    startGame();
+    $(".display").text("");
 }
 // create start function that begins countdown timer
 
 function begin() {
     clock = true;
     intervalId = setInterval(count, 1000);
+    $(".question").html("");
 }
 
 // create time conversion function to break into minutes and seconds
