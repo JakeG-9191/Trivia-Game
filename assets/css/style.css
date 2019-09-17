@@ -1,3 +1,27 @@
 body {
-    background-color: aquamarine;
+    background-image: url("http://thumbor-prod-us-east-1.photo.aws.arc.pub/fGNqNJDiCXGYJaDCbZ9HP_g_2pg=/arc-anglerfish-arc2-prod-bonnier/public/5JEIL7VKP3INSQ3LYLK7AUDQA4.jpg");
+    background-size: 100%;
+}
+
+.jumbotron {
+    width: 75%;
+    text-align: center;
+    margin-left: 10rem;
+    height: auto;
+    margin-top: 5%;
+}
+
+#begin {
+    margin-bottom: 4%;
+    font-size: 36px;
+    padding: 1rem;
+}
+
+.display {
+    font-size: 36px;
+    position: fixed;
+    right: 18%;
+    background-color: antiquewhite;
+    padding: 1rem;
+    border-radius: 18px;
 }

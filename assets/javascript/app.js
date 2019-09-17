@@ -44,8 +44,8 @@ var questionPool = [
     },
     { // 8
         question: "What causes most earthquakes?",
-        options: ["The Moon's gravity", "Plate Techtonics", "Hurricanes", "Planes"],
-        rightAnswer: "Plate Techtonics",
+        options: ["The Moon's gravity", "Plate Tectonics", "Hurricanes", "Planes"],
+        rightAnswer: "Plate Tectonics",
     },
     { // 9
         question: "How much of Earth's surface is covered in water?",
@@ -59,19 +59,28 @@ var questionPool = [
     },
 ]
 
-$("#begin").on("click", function () {
-    begin();
-    gameOn();
-    count();
-    setTimeout(lost, 150000);
-});
+if (!clock) {
+    $("#begin").on("click", function () {
+        clock = true;
+        begin();
+        gameOn();
+        count();
+        setTimeout(lost, 150000);
+    }); 
+};
+
+// $("#begin").on("click", function () {
+//     begin();
+//     gameOn();
+//     count();
+//     setTimeout(lost, 150000);
+// });
 
 function gameOn() {
     for (var i = 0; i < questionPool.length; i++) {
         questionAsked = (questionPool[i].question);
         optionsProvided = (questionPool[i].options);
         $(".question").append("<h3>" + questionAsked + "</h3>" + "<p>" + optionsArray(optionsProvided) + "</p>");
-        
     };
 }
 
@@ -79,29 +88,31 @@ $(document).on("click", ".choice", function(){
     selectedOption = $(this).attr("data-value");
     console.log(selectedOption)
 
-    if (questionPool[0].rightAnswer === selectedOption) {
+    if (clock = true && questionPool[0].rightAnswer === selectedOption) {
         correct++;
-    } if (questionPool[1].rightAnswer === selectedOption) {
+    } else if (questionPool[1].rightAnswer === selectedOption) {
         correct++;
-    } if (questionPool[2].rightAnswer === selectedOption) {
+    } else if (questionPool[2].rightAnswer === selectedOption) {
         correct++;
-    } if (questionPool[3].rightAnswer === selectedOption) {
+    } else if (questionPool[3].rightAnswer === selectedOption) {
         correct++;
-    } if (questionPool[4].rightAnswer === selectedOption) {
+    } else if (questionPool[4].rightAnswer === selectedOption) {
         correct++;
-    } if (questionPool[5].rightAnswer === selectedOption) {
+    } else if (questionPool[5].rightAnswer === selectedOption) {
         correct++;
-    } if (questionPool[6].rightAnswer === selectedOption) {
+    } else if (questionPool[6].rightAnswer === selectedOption) {
         correct++;
-    } if (questionPool[7].rightAnswer === selectedOption) {
+    } else if (questionPool[7].rightAnswer === selectedOption) {
         correct++;
-    } if (questionPool[8].rightAnswer === selectedOption) {
+    } else if (questionPool[8].rightAnswer === selectedOption) {
         correct++;
-    } if (questionPool[9].rightAnswer === selectedOption) {
+    } else if (questionPool[9].rightAnswer === selectedOption) {
         correct++;
     } else {
         incorrect++;
     }
+    console.log("right " + correct)
+    console.log("wrong " + incorrect)
 });
 
 
@@ -123,8 +134,8 @@ function playAgain() {
 
 function lost() {
     alert("you've run out of time");
-    time = 150;
     clock = false;
+    incorrect = setInterval(count, 0);
 }
 // create start function that begins countdown timer
 
