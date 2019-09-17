@@ -5,6 +5,7 @@ var correct = 0;
 var incorrect = 0;
 var unanswered = 0;
 var clock = false;
+startGame();
 
 var questionPool = [
     { // 1
@@ -59,22 +60,19 @@ var questionPool = [
     },
 ]
 
-if (!clock) {
-    $("#begin").on("click", function () {
-        clock = true;
-        begin();
-        gameOn();
-        count();
-        setTimeout(lost, 150000);
-    });
+function startGame() {
+    if (!clock) {
+        $("#begin").on("click", function () {
+            clock = true;
+            begin();
+            gameOn();
+            count();
+            setTimeout(lost, 150000);
+            correct = 0;
+            incorrect = 0;
+        })
+    };
 };
-
-// $("#begin").on("click", function () {
-//     begin();
-//     gameOn();
-//     count();
-//     setTimeout(lost, 150000);
-// });
 
 function gameOn() {
     for (var i = 0; i < questionPool.length; i++) {
@@ -84,7 +82,9 @@ function gameOn() {
     };
 }
 
-
+$(".choice").on('change', function () {
+    $(".choice").not(this).prop('checked', false);
+});
 $(document).on("click", ".choice", function () {
     selectedOption = $(this).attr("data-value");
 
@@ -96,6 +96,10 @@ $(document).on("click", ".choice", function () {
     $("p").click(function () {
         $(this).toggleClass("clicked");
     });
+
+    if (correct + incorrect == 10) {
+        gameStatus();
+    }
 
     if (clock = true && questionPool[0].rightAnswer === selectedOption) {
         correct++;
@@ -120,34 +124,26 @@ $(document).on("click", ".choice", function () {
     } else {
         incorrect++;
     }
-    console.log("right " + correct)
-    console.log("wrong " + incorrect)
 });
-
-function gameStatus() {
-
-}
 
 function optionsArray(optionsProvided) {
     var choices = "";
     for (var i = 0; i < optionsProvided.length; i++) {
-        choices += `<p class="choice" data-value="${optionsProvided[i]}">${optionsProvided[i]}</p>`
+        choices += `<p class="choice" type="checkbox" data-value="${optionsProvided[i]}">${optionsProvided[i]}</p>`
     }
     return choices;
 }
 
-
-// create reset function if player wants to play again
-function playAgain() {
-    time = 150;
-    $(".display").text("02:30");
-    setTimeout(lost, 150000)
+function gameStatus() {
+    $(".question").html("<h3>" + "Correct Answers: " + correct + "</h3>" + "<h3>" + "\nIncorrect Answers: " + incorrect + "</h3>");
+    alert("You've answered all the questions before time was up!")
+    startGame();
 }
 
 function lost() {
-    alert("you've run out of time");
-    clock = false;
-    time = "";
+    $(".question").html("<h3>" + "Correct Answers: " + correct + "</h3>" + "<h3>" + "\nIncorrect Answers: " + incorrect + "</h3>");
+    alert("You've run out of time");
+    startGame();
 }
 // create start function that begins countdown timer
 
@@ -180,9 +176,7 @@ function timeConverter(t) {
 // count function for actual time remaining will be tied to converstion factor as well
 
 function count() {
-    if (clock) {
-        time--;
-        var currentTime = timeConverter(time);
-        $(".display").text(currentTime);
-    }
+    time--;
+    var currentTime = timeConverter(time);
+    $(".display").text(currentTime);
 };
