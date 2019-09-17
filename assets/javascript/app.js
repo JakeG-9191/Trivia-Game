@@ -66,7 +66,7 @@ if (!clock) {
         gameOn();
         count();
         setTimeout(lost, 150000);
-    }); 
+    });
 };
 
 // $("#begin").on("click", function () {
@@ -84,9 +84,18 @@ function gameOn() {
     };
 }
 
-$(document).on("click", ".choice", function(){
+
+$(document).on("click", ".choice", function () {
     selectedOption = $(this).attr("data-value");
-    console.log(selectedOption)
+
+    $("p").hover(function () {
+        $(this).css("background-color", "red");
+    }, function () {
+        $(this).css("background-color", "#325d88");
+    });
+    $("p").click(function () {
+        $(this).toggleClass("clicked");
+    });
 
     if (clock = true && questionPool[0].rightAnswer === selectedOption) {
         correct++;
@@ -115,6 +124,9 @@ $(document).on("click", ".choice", function(){
     console.log("wrong " + incorrect)
 });
 
+function gameStatus() {
+
+}
 
 function optionsArray(optionsProvided) {
     var choices = "";
@@ -168,8 +180,9 @@ function timeConverter(t) {
 // count function for actual time remaining will be tied to converstion factor as well
 
 function count() {
-    time--;
-    var currentTime = timeConverter(time);
-    $(".display").text(currentTime);
-}
-
+    if (clock) {
+        time--;
+        var currentTime = timeConverter(time);
+        $(".display").text(currentTime);
+    }
+};
