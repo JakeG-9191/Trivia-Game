@@ -135,7 +135,7 @@ function playAgain() {
 function lost() {
     alert("you've run out of time");
     clock = false;
-    incorrect = setInterval(count, 0);
+    time = "";
 }
 // create start function that begins countdown timer
 
