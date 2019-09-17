@@ -7,21 +7,55 @@ var unanswered = 0;
 var clock = false;
 
 var questionPool = [
-    {
-        question: "how is this possible?",
-        options: ["it is not", "it is", "why not", "because"],
-        rightAnswer: "it is",
+    { // 1
+        question: "What is Earths average distance to the Sun?",
+        options: ["92,956,050 miles", "83,041,430 miles", "405,321,783 miles", "100 light years"],
+        rightAnswer: "92,956,050 miles",
     },
-
-    {
-        question: "this is a test?",
-        options: ["yellow", "blue", "green", "black"],
-        rightAnswer: "black",
+    { // 2
+        question: "How long ago was the Earth formed?",
+        options: ["About 3.7 million years ago", "About 823 billion years ago", "Roughly six days ago", "About 4.6 billion years ago"],
+        rightAnswer: "About 4.6 billion years ago",
     },
-    {
-        question: "a third questions for the game?",
-        options: ["top", "bottom", "left", "right"],
-        rightAnswer: "left",
+    { // 3
+        question: "How many types of crust does the planet have?",
+        options: ["More than the average pizza", "Two", "Seven", "None"],
+        rightAnswer: "Two",
+    },
+    { // 4
+        question: "About how much of the Earth's atmosphere consists of nitrogen?",
+        options: ["72%", "78%", "12%", "94%"],
+        rightAnswer: "78%",
+    },
+    { // 5
+        question: "In relation to Earth's overall diameter, how large is the moon?",
+        options: ["About 1/72nd", "Almost 2 times", "About 1/5th", "About 1/4th"],
+        rightAnswer: "About 1/4th",
+    },
+    { // 6
+        question: "How many planets are between Earth and the Sun?",
+        options: ["Two", "Three", "One", "Eight"],
+        rightAnswer: "Two",
+    },
+    { // 7
+        question: "Where was the largest earthquake recorded at on the planet?",
+        options: ["Colorado, US", "London, UK", "Dhaka, Bangladesh", "Alaska, US"],
+        rightAnswer: "Alaska, US",
+    },
+    { // 8
+        question: "What causes most earthquakes?",
+        options: ["The Moon's gravity", "Plate Techtonics", "Hurricanes", "Planes"],
+        rightAnswer: "Plate Techtonics",
+    },
+    { // 9
+        question: "How much of Earth's surface is covered in water?",
+        options: ["About 70%", "About 55%", "About 24%", "About 82%"],
+        rightAnswer: "About 70%",
+    },
+    { // 10
+        question: "What feature is responsible for the magnetic field that surrounds the planet?",
+        options: ["The world's oceans", "Volcano eruptions", "The molten core", "Gravity from the Sun"],
+        rightAnswer: "The molten core",
     },
 ]
 
@@ -44,33 +78,32 @@ function gameOn() {
 $(document).on("click", ".choice", function(){
     selectedOption = $(this).attr("data-value");
     console.log(selectedOption)
-    correctAnswer = questionPool[0].rightAnswer;
-    if (correctAnswer === selectedOption) {
+
+    if (questionPool[0].rightAnswer === selectedOption) {
         correct++;
-        console.log("wins")
+    } if (questionPool[1].rightAnswer === selectedOption) {
+        correct++;
+    } if (questionPool[2].rightAnswer === selectedOption) {
+        correct++;
+    } if (questionPool[3].rightAnswer === selectedOption) {
+        correct++;
+    } if (questionPool[4].rightAnswer === selectedOption) {
+        correct++;
+    } if (questionPool[5].rightAnswer === selectedOption) {
+        correct++;
+    } if (questionPool[6].rightAnswer === selectedOption) {
+        correct++;
+    } if (questionPool[7].rightAnswer === selectedOption) {
+        correct++;
+    } if (questionPool[8].rightAnswer === selectedOption) {
+        correct++;
+    } if (questionPool[9].rightAnswer === selectedOption) {
+        correct++;
     } else {
         incorrect++;
-        console.log("loss")
-    };
+    }
 });
 
-// function answerCheck() {
-//     $(document).on("click", ".choice", function () {
-//         var selectedOption = $(this).attr("data-value");
-
-//         for (var i = 0; i < questionPool.length; i++) {
-//             var correctAnswer = questionPool[i].rightAnswer
-//             console.log(correctAnswer)
-//             if (correctAnswer === selectedOption) {
-//                 correct++;
-//                 console.log("winns" + correct)
-//             } else {
-//                 incorrect++;
-//                 console.log("losses" + incorrect)
-//             };
-//         }
-//     })
-// };
 
 function optionsArray(optionsProvided) {
     var choices = "";
