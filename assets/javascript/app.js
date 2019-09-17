@@ -6,18 +6,22 @@ var incorrect = 0;
 var unanswered = 0;
 var clock = false;
 
-console.log(clock)
 var questionPool = [
     {
         question: "how is this possible?",
         options: ["it is not", "it is", "why not", "because"],
-        rightAnswer: "it is not",
+        rightAnswer: "it is",
     },
 
     {
         question: "this is a test?",
-        options: ["one", "two", "three", "four"],
-        rightAnswer: "two",
+        options: ["yellow", "blue", "green", "black"],
+        rightAnswer: "black",
+    },
+    {
+        question: "a third questions for the game?",
+        options: ["top", "bottom", "left", "right"],
+        rightAnswer: "left",
     },
 ]
 
@@ -26,20 +30,47 @@ $("#begin").on("click", function () {
     gameOn();
     count();
     setTimeout(lost, 150000);
-    answers();
-    console.log(clock)
-})
+});
 
 function gameOn() {
-
     for (var i = 0; i < questionPool.length; i++) {
         questionAsked = (questionPool[i].question);
         optionsProvided = (questionPool[i].options);
-
         $(".question").append("<h3>" + questionAsked + "</h3>" + "<p>" + optionsArray(optionsProvided) + "</p>");
-
-    }
+        
+    };
 }
+
+$(document).on("click", ".choice", function(){
+    selectedOption = $(this).attr("data-value");
+    console.log(selectedOption)
+    correctAnswer = questionPool[0].rightAnswer;
+    if (correctAnswer === selectedOption) {
+        correct++;
+        console.log("wins")
+    } else {
+        incorrect++;
+        console.log("loss")
+    };
+});
+
+// function answerCheck() {
+//     $(document).on("click", ".choice", function () {
+//         var selectedOption = $(this).attr("data-value");
+
+//         for (var i = 0; i < questionPool.length; i++) {
+//             var correctAnswer = questionPool[i].rightAnswer
+//             console.log(correctAnswer)
+//             if (correctAnswer === selectedOption) {
+//                 correct++;
+//                 console.log("winns" + correct)
+//             } else {
+//                 incorrect++;
+//                 console.log("losses" + incorrect)
+//             };
+//         }
+//     })
+// };
 
 function optionsArray(optionsProvided) {
     var choices = "";
@@ -49,12 +80,6 @@ function optionsArray(optionsProvided) {
     return choices;
 }
 
-function answers() {
-    $(document).on("click", ".choice", function () {
-        var selectedOption = $(this).attr("data-value");
-        console.log(selectedOption)
-    });
-}
 
 // create reset function if player wants to play again
 function playAgain() {
