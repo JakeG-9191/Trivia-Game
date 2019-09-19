@@ -5,6 +5,7 @@ var correct = 0;
 var incorrect = 0;
 var unanswered = 0;
 var clock = false;
+var timeout;
 startGame();
 
 var questionPool = [
@@ -63,13 +64,13 @@ var questionPool = [
 function startGame() {
     if (!clock) {
         $("#begin").on("click", function () {
-            clock = true;
             begin();
             gameOn();
             count();
-            setTimeout(lost, 150000);
+            timeout = setTimeout(lost, 150000);
             correct = 0;
             incorrect = 0;
+            time = 150;
         })
     };
 };
@@ -101,7 +102,7 @@ $(document).on("click", ".choice", function () {
     if (correct + incorrect == 10) {
         gameStatus();
     }
-    if (clock = true && questionPool[0].rightAnswer === selectedOption) {
+    if (questionPool[0].rightAnswer === selectedOption) {
         correct++;
     } else if (questionPool[1].rightAnswer === selectedOption) {
         correct++;
@@ -138,12 +139,16 @@ function gameStatus() {
     $(".question").html("<h3>" + "Correct Answers: " + correct + "</h3>" + "<h3>" + "\nIncorrect Answers: " + incorrect + "</h3>");
     alert("You've answered all the questions before time was up!")
     $(".display").text("");
+    clearInterval(intervalId);
+    clearTimeout(timeout);
 }
 
 function lost() {
     $(".question").html("<h3>" + "Correct Answers: " + correct + "</h3>" + "<h3>" + "\nIncorrect Answers: " + incorrect + "</h3>");
     alert("You've run out of time");
     $(".display").text("");
+    clearInterval(intervalId);
+    clearTimeout(timeout);
 }
 // create start function that begins countdown timer
 
